@@ -18,7 +18,7 @@ export class BlogComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.blogsCollection = this.firestore.collection('blogs');
+    this.blogsCollection = this.firestore.collection('blogs', ref => ref.orderBy("sort_number", "desc"));
     this.blogs = this.blogsCollection.valueChanges();
   }
 

@@ -13,8 +13,10 @@ export class CreatePostComponent implements OnInit {
     this.postCreationForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
-      imgUrl: new FormControl('')
+      imgUrl: new FormControl(''),
+      sort_number: new FormControl('')
     });
   }
 
@@ -27,9 +29,10 @@ export class CreatePostComponent implements OnInit {
     this.firebase.collection('blogs').doc(this.firebase.createId()).set({
       title: this.postCreationForm.get('title').value,
       description: this.postCreationForm.get('description').value,
-      content: this.postCreationForm.get('content'),
+      content: this.postCreationForm.get('content').value,
       date: this.postCreationForm.get('date').value,
       imgId: this.postCreationForm.get('imgUrl').value,
+      sort_number: this.postCreationForm.get('sort_number').value,
     }).then(() => console.log('post saved'));
   }
 
