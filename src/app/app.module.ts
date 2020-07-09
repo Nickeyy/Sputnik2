@@ -14,6 +14,10 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { CreatePostComponent } from './create-post/create-post.component';
 import {AngularFireAuthModule} from "@angular/fire/auth";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from "@angular/material/button";
+import { MatCardModule } from '@angular/material/card';
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -40,14 +44,18 @@ export const firebaseConfig = {
     LoginComponent,
     CreatePostComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        AngularFirestoreModule,
-        AngularFireModule.initializeApp(firebaseConfig),
-        ReactiveFormsModule,
-        AngularFireAuthModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    ReactiveFormsModule,
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -6,20 +6,26 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 flex-box">
-      <div class="card card-size" *ngFor="let blog of blogs | async" (click)="navigateToDetailView(blog)">
+      <div class="card card-size" *ngFor="let doc of docsArray" (click)="navigateToDetailView(doc)">
         <img class="card-img"
-             src="{{blog.imgId}}"
+             src="{{doc.data().imgId}}"
              alt="Bologna">
         <div class="card-body">
-          <h4 class="card-title" [innerHTML]="blog.title"></h4>
+          <h4 class="card-title" [innerHTML]="doc.data().title"></h4>
           <small class="text-muted cat">
             <i class="far fa-clock text-info"></i>
             <i class="fas fa-users text-info"></i>
           </small>
-          <p class="card-text" [innerHTML]="blog.description"></p>
+          <p class="card-text" [innerHTML]="doc.data().description"></p>
         </div>
         <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-          <div class="views" [innerHTML]="blog.date">
+          <div class="views" [innerHTML]="doc.data().date">
+          </div>
+          <div id="like_button">
+            <p style="float: left">{{doc.data().count}}</p>
+            <button mat-icon-button (click)="like($event, doc)">
+              <mat-icon>favorite</mat-icon>
+            </button>
           </div>
         </div>
       </div>

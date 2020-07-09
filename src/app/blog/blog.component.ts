@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/firest
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../_core/authentication.service";
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-blog',
@@ -15,17 +16,37 @@ export class BlogComponent implements OnInit {
 
   blogsCollection: AngularFirestoreCollection<any>;
   blogs: Observable<any>;
+  storyRef: any;
+  docsArray = [];
 
+  increment = firebase.firestore.FieldValue.increment(1);
 
   ngOnInit(): void {
     this.blogsCollection = this.firestore.collection('blogs', ref => ref.orderBy("sort_number", "desc"));
     this.blogs = this.blogsCollection.valueChanges();
+
+    this.firestore.collection('blogs', ref => ref.orderBy("sort_number", "desc")).get().subscribe((snapshot) => {
+      snapshot.docs.forEach(doc =>{
+        this.docsArray.push(doc);
+      })
+    })
   }
 
-  navigateToDetailView(blog): void {
-    this.router.navigate(['/post', {title: blog.title}]);
+  navigateToDetailView(doc): void {
+    this.router.navigate(['/post', {title: doc.data().title}]);
   }
 
+  like (event, doc) {
+    event.stopPropagation();
+    this.storyRef = this.firestore.collection('blogs').doc(doc.id);
+    this.storyRef.update({count: this.increment}).then(d =>{
+      this.reloadPage();
+    });
+  }
+
+  reloadPage(){
+    window.location.reload();
+  }
 
 
 
