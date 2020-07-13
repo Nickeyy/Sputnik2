@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../_core/authentication.service";
 import * as firebase from "firebase";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-blog',
@@ -18,6 +19,7 @@ export class BlogComponent implements OnInit {
   blogs: Observable<any>;
   storyRef: any;
   docsArray = [];
+  showSpinner: boolean = false;
 
   increment = firebase.firestore.FieldValue.increment(1);
 
@@ -46,6 +48,7 @@ export class BlogComponent implements OnInit {
 
   reloadPage(){
     window.location.reload();
+    this.showSpinner = true;
   }
 
 

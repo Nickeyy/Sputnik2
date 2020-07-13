@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from "@angular/material/icon";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ResultComponent } from './result/result.component';
+import { MatSliderModule} from '@angular/material/slider';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
@@ -43,6 +47,7 @@ export const firebaseConfig = {
     PostComponent,
     LoginComponent,
     CreatePostComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,10 @@ export const firebaseConfig = {
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

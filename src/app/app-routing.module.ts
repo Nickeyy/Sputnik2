@@ -8,6 +8,7 @@ import {PostComponent} from "./post/post.component";
 import {LoginComponent} from "./login/login.component";
 import {CreatePostComponent} from "./create-post/create-post.component";
 import {AngularFireAuthGuard, redirectUnauthorizedTo} from "@angular/fire/auth-guard";
+import {ResultComponent} from "./result/result.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'blog', component: BlogComponent},
   {path: 'post', component: PostComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'result', component: ResultComponent},
   {path: 'create-post', component: CreatePostComponent, canActivate: [AngularFireAuthGuard],
   data: {authGuardPipe: redirectUnauthorizedToLogin}},
   {path: '**', redirectTo: 'home'}
